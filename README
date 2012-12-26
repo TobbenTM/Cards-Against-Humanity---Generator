@@ -4,8 +4,10 @@ This Scribus script creates a set of Cards Against Humanity from a CSV file.
 [Cards Against humanity] (http://cardsagainsthumanity.com/)
 [Scribus](http://www.scribus.net)
 
-The attached CSV files contain my french translation of the game.
-Thanks to Mathieu, Lise & Michel.
+The attached CSV files contain my norwegian translation of the game.
+Thanks to @mrkolby and my family.
+Thanks to [Lang](https://github.com/lhoang) for the generator. See the
+parent of this fork for his french translation.
 
 ## Usage : 
 * Launch script from Scribus
@@ -17,20 +19,3 @@ The default format is A4 - landscape.
 
 
 *Cards Against Humanity is distributed under a Creative Commons Attribution - Noncommercial - Share Alike license*
-
-
-# Générateur pour Cards Against Humanity
-Ce script Scribus crée un jeu de cartes Cards Against Humanity à partir d'un fichier CSV.
-[Cards Against humanity] (http://cardsagainsthumanity.com/)
-[Scribus](http://www.scribus.net)
-
-Les fichiers CSV fournis comportent ma traduction française du jeu.
-
-## Utilisation :
-* Lancer le script depuis Scribus
-* Saisir les infos du CSV (séparateur, guillemet et colonne à traiter)
-* Sélectionner le fichier CSV
-
-Le format par défaut est A4 - Paysage
-
-*Cards Against Humanity est distribué sous une licence Creative Commons , pas d'utilisation commerciale, partage à l'identique*
