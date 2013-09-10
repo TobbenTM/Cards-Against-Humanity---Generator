@@ -5,9 +5,9 @@ This Scribus script creates a set of Cards Against Humanity from a CSV file.
 [Scribus](http://www.scribus.net)
 
 The attached CSV files contain my norwegian translation of the game.
-Thanks to @mrkolby and my family.
+Thanks to @mrkolby, marcusramberg and his family for original translation.
 Thanks to [Lang](https://github.com/lhoang) for the generator. See the
-parent of this fork for his french translation.
+parent of the parent of this fork for his french translation.
 
 ## Usage : 
 * Launch script from Scribus
