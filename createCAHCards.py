@@ -37,9 +37,13 @@ import csv
 # Constants
 WIDTH=297 # page width
 HEIGHT=210 # page height
+#WIDTH=210 # page width
+#HEIGHT=297 # page height
 MARGINS=(10, 10, 10, 10) # margins (left, right, top, bottom) ?
 CARDWIDTH=69 # card width
 CARDHEIGHT=47.5 # card height
+#CARDWIDTH=47.5 # card width
+#CARDHEIGHT=69 # card height
 
 # Get the cvs data
 def getCSVdata(delim, qc):
@@ -118,7 +122,7 @@ def addLogo(x, y, isBlack):
     scribus.rotateObject(-angle, square3)
     
     title=scribus.createText(x+10,y+2, 50, 5)
-    scribus.setFont("Arial Bold", title)
+    scribus.setFont("Roboto Bold", title)
     scribus.setFontSize(8, title)
     scribus.insertText("Cards Against Humanity", 0, title)
     scribus.setTextColor(titleColor, title)
@@ -130,14 +134,12 @@ def addLogo(x, y, isBlack):
 # 1-Box
 # 2-TextBox
 # 3-Logo
-def createCell(text, roffset, coffset, w, h, marginl, margint, isBlack):
+def createCell(text, roffset, coffset, w, h, marginl, margint, isBlack, cLines):
     #Create textbox
     box=scribus.createRect(marginl+(roffset-1)*w,margint+(coffset-1)*h, w, h)
     textBox=scribus.createText(marginl+(roffset-1)*w,margint+(coffset-1)*h, w, h)
     #insert the text into textbox
-    scribus.setFont("Arial Bold", textBox)
-    
-    
+    scribus.setFont("Roboto Bold", textBox)    
     
     #Default  font size
     fontSize=12
@@ -153,6 +155,10 @@ def createCell(text, roffset, coffset, w, h, marginl, margint, isBlack):
         scribus.setTextColor("White", textBox)
         scribus.setLineColor("White", box)
 
+    if isBlack and cLines==False:
+        scribus.setLineColor("Black", box)
+    elif isBlack==False and cLines==False:
+        scribus.setLineColor("White", box)
 
     #add Logo
     hOffset=37
@@ -186,6 +192,11 @@ color=scribus.valueDialog('Color of the cards :','black (b) or white (w)','w')
 if len(color) > 0 and 'b'==color[0]: isBlack=True
 else: isBlack=False
 
+# choose wether or not to include cutting lines
+# lines should not be included if it is cut professionally
+lines=scribus.valueDialog('Include cutting lines?', 'yes (y) or no (n)', 'y')
+if len(lines) > 0 and 'n'==lines[0]: cLines=False
+else: cLines=True
 
 # open CSV file
 data = getCSVdata(delim=delim, qc=qc)
@@ -197,7 +208,7 @@ for row in data:
     scribus.messagebarText("Processing "+str(nol)+" elements")
     celltext = row[numcol].strip()
     if len(celltext)!=0:
-        createCell(celltext, cr, cc, CARDWIDTH, CARDHEIGHT, MARGINS[0], MARGINS[2], isBlack)
+        createCell(celltext, cr, cc, CARDWIDTH, CARDHEIGHT, MARGINS[0], MARGINS[2], isBlack, cLines)
         nol=nol+1
         if cr==colstotal and cc==rowstotal:
             #create new page
